@@ -1,0 +1,76 @@
+<MIVA STANDARDOUTPUTLEVEL="" ERROROUTPUTLEVEL=""><MvEXIT>
+
+<MvCOMMENT>
+	= MODULE CONFIG
+</MvCOMMENT>
+<MvFUNCTION NAME = "Module_Description" PARAMETERS = "module var" STANDARDOUTPUTLEVEL = "">
+	<MvASSIGN NAME = "l.module:code"	VALUE = "mv-math">
+	<MvASSIGN NAME = "l.module:name"	VALUE = "MV Math">
+	<MvASSIGN NAME = "l.module:provider"	VALUE = "ssoule@miva.com">
+	<MvASSIGN NAME = "l.module:version"	VALUE = "0.0.1">
+	<MvASSIGN NAME = "l.module:api_ver"	VALUE = "5.73">
+	<MvASSIGN NAME = "l.module:features"	VALUE = "">
+	<MvASSIGN NAME = "l.module:description"	VALUE = "Functions to convert unit values.">
+</MvFUNCTION>
+
+<MvCOMMENT>
+	= HIGH LEVEL FUNCTIONS
+</MvCOMMENT>
+<MvFUNCTION NAME = "Convert" PARAMETERS = "options">
+	<MvIF EXPR = "{ l.options:from_unit EQ 'ft' AND l.options:to_unit 'in' }">
+		<MvFUNCTIONRETURN VALUE = "{ Convert_FT_to_IN(l.options:from_value) }">
+	</MvIF>
+	<MvFUNCTIONRETURN VALUE = "">
+</MvFUNCTION>
+
+<MvFUNCTION NAME = "Convert_From" PARAMETERS = "from_value, from_unit, to_unit">
+	<MvIF EXPR = "{ l.from_unit EQ 'ft' AND l.to_unit 'in' }">
+		<MvFUNCTIONRETURN VALUE = "{ Convert_FT_to_IN(l.from_value) }">
+	</MvIF>
+	<MvFUNCTIONRETURN VALUE = "">
+</MvFUNCTION>
+
+<MvFUNCTION NAME = "Formatted_Convert_From" PARAMETERS = "from_value, from_unit, to_unit">
+	<MvIF EXPR = "{ l.from_unit EQ 'ft' AND l.to_unit 'in' }">
+		<MvFUNCTIONRETURN VALUE = "{ Formatted_Convert_FT_to_IN(l.from_value) }">
+	</MvIF>
+	<MvFUNCTIONRETURN VALUE = "">
+</MvFUNCTION>
+
+
+<MvCOMMENT>
+	= LENGTH > IMPERIAL
+</MvCOMMENT>
+<MvFUNCTION NAME = "Convert_FT_to_IN" PARAMETERS = "ft">
+	<MvFUNCTIONRETURN VALUE = "{ l.ft / 12 }">
+</MvFUNCTION>
+
+<MvFUNCTION NAME = "Formatted_Convert_FT_to_IN" PARAMETERS = "ft">
+	<MvFUNCTIONRETURN VALUE = "{ Convert_FT_to_IN(l.ft) $ ' in.' }">
+</MvFUNCTION>
+
+
+<MvCOMMENT>
+	= TESTS
+</MvCOMMENT>
+<MvFUNCTION NAME = "Run_Tests">
+	<MvIF EXPR = "{ Convert_FT_to_IN(1) NE 12 }">
+		<MvFUNCTIONRETURN VALUE = "{ 'Test Error #1: Convert_FT_to_IN' }">
+	<MvELSEIF EXPR = "{ Convert_FT_to_IN(.5) NE 6 }">
+		<MvFUNCTIONRETURN VALUE = "{ 'Test Error #2: Convert_FT_to_IN' }">
+	<MvELSEIF EXPR = "{ Formatted_Convert_FT_to_IN(1) NE '12 in.' }">
+		<MvFUNCTIONRETURN VALUE = "{ 'Test Error #3: Formatted_Convert_FT_to_IN' }">
+	<MvELSEIF EXPR = "{ Formatted_Convert_FT_to_IN(.5) NE '6 in.' }">
+		<MvFUNCTIONRETURN VALUE = "{ 'Test Error #4: Formatted_Convert_FT_to_IN' }">
+	<MvELSEIF EXPR = "{ Convert_From(1, 'ft', 'in') NE 12 }">
+		<MvFUNCTIONRETURN VALUE = "{ 'Test Error #5: Convert_From' }">
+	<MvELSEIF EXPR = "{ Convert_From(.5, 'ft', 'in') NE 6 }">
+		<MvFUNCTIONRETURN VALUE = "{ 'Test Error #6: Convert_From' }">
+	<MvELSEIF EXPR = "{ Formatted_Convert_From(1, 'ft', 'in') NE '12 in.' }">
+		<MvFUNCTIONRETURN VALUE = "{ 'Test Error #7: Formatted_Convert_From' }">
+	<MvELSEIF EXPR = "{ Formatted_Convert_From(.5, 'ft', 'in') NE '6 in.' }">
+		<MvFUNCTIONRETURN VALUE = "{ 'Test Error #8: Formatted_Convert_From' }">
+	<MvELSE>
+		<MvFUNCTIONRETURN VALUE = "All tests passed.">
+	</MvIF>
+</MvFUNCTION>
