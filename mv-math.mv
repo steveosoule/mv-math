@@ -39,6 +39,26 @@
 
 
 <MvCOMMENT>
+
+	= TODO:
+		- Sq. ft
+		- Sq. in.
+		- Area & Perimiter
+			- Circle
+			- Circle Arc
+			- Rectangle
+			- Triangle
+			- Trapezoid
+		- Volume
+			- Cube
+			- Box
+			- Sphere
+			- Cylinder
+			- Pyramid
+</MvCOMMENT>
+
+
+<MvCOMMENT>
 	= LENGTH > IMPERIAL
 </MvCOMMENT>
 <MvFUNCTION NAME = "Convert_FT_to_IN" PARAMETERS = "ft">
