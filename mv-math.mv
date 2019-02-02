@@ -17,21 +17,21 @@
 	= HIGH LEVEL FUNCTIONS
 </MvCOMMENT>
 <MvFUNCTION NAME = "Convert" PARAMETERS = "options">
-	<MvIF EXPR = "{ l.options:from_unit EQ 'ft' AND l.options:to_unit 'in' }">
+	<MvIF EXPR = "{ l.options:from_unit EQ 'ft' AND l.options:to_unit EQ 'in' }">
 		<MvFUNCTIONRETURN VALUE = "{ Convert_FT_to_IN(l.options:from_value) }">
 	</MvIF>
 	<MvFUNCTIONRETURN VALUE = "">
 </MvFUNCTION>
 
 <MvFUNCTION NAME = "Convert_From" PARAMETERS = "from_value, from_unit, to_unit">
-	<MvIF EXPR = "{ l.from_unit EQ 'ft' AND l.to_unit 'in' }">
+	<MvIF EXPR = "{ l.from_unit EQ 'ft' AND l.to_unit EQ 'in' }">
 		<MvFUNCTIONRETURN VALUE = "{ Convert_FT_to_IN(l.from_value) }">
 	</MvIF>
 	<MvFUNCTIONRETURN VALUE = "">
 </MvFUNCTION>
 
 <MvFUNCTION NAME = "Formatted_Convert_From" PARAMETERS = "from_value, from_unit, to_unit">
-	<MvIF EXPR = "{ l.from_unit EQ 'ft' AND l.to_unit 'in' }">
+	<MvIF EXPR = "{ l.from_unit EQ 'ft' AND l.to_unit EQ 'in' }">
 		<MvFUNCTIONRETURN VALUE = "{ Formatted_Convert_FT_to_IN(l.from_value) }">
 	</MvIF>
 	<MvFUNCTIONRETURN VALUE = "">
